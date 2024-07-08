@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Farmer Assist</string>
+    <string name="title_home">Home</string>
+    <string name="title_question">Question</string>
+    <string name="title_img_search">Recognition</string>
+</resources>
