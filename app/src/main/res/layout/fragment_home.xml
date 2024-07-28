@@ -39,7 +39,7 @@
         android:fontFamily="@font/nunito_bold"
         android:text="@string/welcome"
         android:textSize="21sp"
-        app:layout_constraintEnd_toStartOf="@+id/weather_icon"
+        app:layout_constraintEnd_toStartOf="@+id/temp_t"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
@@ -50,4 +50,23 @@
         android:layout_height="50dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+    <TextView
+        android:id="@+id/temp_t"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_bold"
+        app:layout_constraintBottom_toBottomOf="@+id/weather_icon"
+        app:layout_constraintEnd_toStartOf="@+id/weather_icon"
+        app:layout_constraintTop_toTopOf="@+id/weather_icon" />
+
+    <TextView
+        android:id="@+id/diseases"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/diseases"
+        app:layout_constraintStart_toStartOf="@+id/text_home"
+        app:layout_constraintTop_toBottomOf="@+id/text_home" />
 </androidx.constraintlayout.widget.ConstraintLayout>

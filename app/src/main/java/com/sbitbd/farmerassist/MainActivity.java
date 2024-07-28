@@ -14,6 +14,9 @@ import com.google.android.material.color.DynamicColors;
 import com.google.android.material.elevation.SurfaceColors;
 import com.sbitbd.farmerassist.databinding.ActivityMainBinding;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
