@@ -19,7 +19,7 @@ public class WeatherRepositoryImpl implements WeatherRepository {
 
     @Override
     public void fetchData(DataCallback callback) {
-        api.getForecast("", "","").enqueue(new Callback<WeatherModel>() {
+        api.getForecast("", "","").enqueue(new Callback<>() {
             @Override
             public void onResponse(Call<WeatherModel> call, Response<WeatherModel> response) {
                 if (response.isSuccessful()) {
