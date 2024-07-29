@@ -4,6 +4,10 @@ plugins {
     alias(libs.plugins.hilt)
 }
 
+def localPropertiesFile = rootProject.file("local.properties")
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(localPropertiesFile))
+
 android {
     namespace 'com.sbitbd.farmerassist'
     compileSdk 34
@@ -16,6 +20,7 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "apiKey", localProperties['apiKey']
     }
 
     buildTypes {
@@ -30,6 +35,7 @@ android {
     }
     buildFeatures {
         viewBinding true
+        buildConfig true
     }
     packagingOptions {
         resources {
