@@ -1,10 +1,13 @@
 package com.sbitbd.farmerassist.di;
 
+import com.sbitbd.farmerassist.Repository.WeatherRepository;
+import com.sbitbd.farmerassist.Repository.WeatherRepositoryImpl;
 import com.sbitbd.farmerassist.network.Api;
 import com.sbitbd.farmerassist.utils.Utils;
 
 import javax.inject.Singleton;
 
+import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
@@ -25,4 +28,6 @@ public class WeatherModule {
                 .build()
                 .create(Api.class);
     }
+
 }
+

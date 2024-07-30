@@ -4,6 +4,7 @@ public class Utils {
     public static final String METRIC = "metric";
     public static final String IMPERIAL = "imperial";
     public static final String BASE_URL = "https://api.openweathermap.org";
+    public static final String ICON_URL = "http://openweathermap.org/img/w/";
 
     public static String getTempString(double temp){
         return round(temp) +" °C";

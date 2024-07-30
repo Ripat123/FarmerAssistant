@@ -1,26 +1,34 @@
 package com.sbitbd.farmerassist.DataModel;
 
+import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.List;
+
 public class WeatherModel {
     Coord coord;
     Main main;
-    Sys sys;
+    List<Weather> weather = new ArrayList<>();
     String name;
-    int id;
 
-    private class Coord {
-        double lon;
-        double lat;
+    public Coord getCoord() {
+        return coord;
     }
 
-    public class Main {
-        double temp;
-        double pressure;
-        double humidity;
-        double temp_min;
-        double temp_max;
+    public Main getMain() {
+        return main;
     }
 
-    private class Sys {
-        String country;
+    public List<Weather> getWeather() {
+        return weather;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return MessageFormat.format("WeatherModel'{'coord={0}, main={1}, weather={2}, name=''{3}'''}'",
+                coord.toString(), main.toString(), weather.get(0).toString(), name);
     }
 }

@@ -3,6 +3,7 @@ package com.sbitbd.farmerassist.Repository;
 import com.sbitbd.farmerassist.BuildConfig;
 import com.sbitbd.farmerassist.DataModel.WeatherModel;
 import com.sbitbd.farmerassist.network.Api;
+import com.sbitbd.farmerassist.utils.Utils;
 
 import javax.inject.Inject;
 
@@ -20,7 +21,7 @@ public class WeatherRepositoryImpl implements WeatherRepository {
 
     @Override
     public void fetchData(DataCallback callback) {
-        api.getForecast("", "","").enqueue(new Callback<>() {
+        api.getForecast("Dhaka", BuildConfig.wapiKey, Utils.METRIC).enqueue(new Callback<>() {
             @Override
             public void onResponse(Call<WeatherModel> call, Response<WeatherModel> response) {
                 if (response.isSuccessful()) {

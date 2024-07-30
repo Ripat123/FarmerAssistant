@@ -46,8 +46,8 @@
 
     <ImageView
         android:id="@+id/weather_icon"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="37dp"
+        android:layout_height="37dp"
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
@@ -64,7 +64,7 @@
         android:id="@+id/diseases"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/nunito_bold"
         android:text="@string/diseases"
         app:layout_constraintStart_toStartOf="@+id/text_home"
