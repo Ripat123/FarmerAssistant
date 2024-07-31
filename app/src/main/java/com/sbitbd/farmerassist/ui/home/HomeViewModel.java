@@ -6,8 +6,11 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.sbitbd.farmerassist.DataModel.DiseasesModel;
 import com.sbitbd.farmerassist.DataModel.WeatherModel;
 import com.sbitbd.farmerassist.Repository.WeatherRepository;
+
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -18,6 +21,7 @@ public class HomeViewModel extends ViewModel {
 
     private final WeatherRepository weatherRepository;
     private MutableLiveData<WeatherModel> live_data = new MutableLiveData<>();
+    private MutableLiveData<ArrayList<DiseasesModel>> diseases_data = new MutableLiveData<>();
     @Inject
     public HomeViewModel(WeatherRepository weatherRepository) {
         this.weatherRepository = weatherRepository;
@@ -41,6 +45,17 @@ public class HomeViewModel extends ViewModel {
                 live_data.setValue(null);
             }
         });
+    }
+
+    protected LiveData<ArrayList<DiseasesModel>> getDiseases(){
+        ArrayList<DiseasesModel> models = new ArrayList<>();
+        models.add(new DiseasesModel("https://www.irri.org/sites/default/files/files/diseases%20and%20pests/disease-and-pest-bacterial-blight2.jpg",""));
+        models.add(new DiseasesModel("https://www.irri.org/sites/default/files/files/diseases%20and%20pests/disease-and-pest-rice-blast.jpg",""));
+        models.add(new DiseasesModel("https://us-central1-plantix-8e0ce.cloudfunctions.net/v1/image/w400/6f2d41b6-f518-4e63-b863-87209602a207",""));
+        models.add(new DiseasesModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0npoPQLiWW61lvN0cVYadBypWVbj_geJ6IdNVSj_U4O_PF814CrlQWSWEgp5l9MvZxqE&usqp=CAU",""));
+        models.add(new DiseasesModel("https://lh3.googleusercontent.com/proxy/CLiYG96HjkXYhHAFofxbvlLe1F0b8_eBcnG0TF7030N-SI3pP8kFZf0IbxpUfUhMN-8apOn4mA4gojZRugY0A-z9rrRybKEB7IuFZjklAoYeF33L-iQN2N4",""));
+        diseases_data.setValue(models);
+        return diseases_data;
     }
 
 }

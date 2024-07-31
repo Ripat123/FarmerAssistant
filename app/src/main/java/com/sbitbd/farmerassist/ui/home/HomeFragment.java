@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
+import com.sbitbd.farmerassist.Adapter.DiseasesAdapter;
 import com.sbitbd.farmerassist.DataModel.WeatherModel;
 import com.sbitbd.farmerassist.databinding.FragmentHomeBinding;
 import com.sbitbd.farmerassist.utils.Utils;
@@ -23,6 +24,7 @@ public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
     private HomeViewModel viewModel;
+    private DiseasesAdapter adapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -46,6 +48,11 @@ public class HomeFragment extends Fragment {
                 Toast.makeText(getContext(), "Not Found", Toast.LENGTH_SHORT).show();
         });
         viewModel.weatherData();
+        viewModel.getDiseases().observe(getViewLifecycleOwner(),diseasesModels -> {
+            adapter = new DiseasesAdapter(getContext(),diseasesModels);
+            binding.carouselRec.setAdapter(adapter);
+        });
+
     }
 
     private void setView(WeatherModel model){
