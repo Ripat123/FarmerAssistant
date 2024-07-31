@@ -12,6 +12,12 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.carousel.CarouselLayoutManager;
+import com.google.android.material.carousel.CarouselStrategy;
+import com.google.android.material.carousel.FullScreenCarouselStrategy;
+import com.google.android.material.carousel.HeroCarouselStrategy;
+import com.google.android.material.carousel.MultiBrowseCarouselStrategy;
+import com.google.android.material.carousel.UncontainedCarouselStrategy;
 import com.sbitbd.farmerassist.Adapter.DiseasesAdapter;
 import com.sbitbd.farmerassist.DataModel.WeatherModel;
 import com.sbitbd.farmerassist.databinding.FragmentHomeBinding;
@@ -48,6 +54,9 @@ public class HomeFragment extends Fragment {
                 Toast.makeText(getContext(), "Not Found", Toast.LENGTH_SHORT).show();
         });
         viewModel.weatherData();
+        CarouselLayoutManager carouselLayoutManager = new CarouselLayoutManager();
+        carouselLayoutManager.setCarouselStrategy(new MultiBrowseCarouselStrategy());
+        binding.carouselRec.setLayoutManager(carouselLayoutManager);
         viewModel.getDiseases().observe(getViewLifecycleOwner(),diseasesModels -> {
             adapter = new DiseasesAdapter(getContext(),diseasesModels);
             binding.carouselRec.setAdapter(adapter);
