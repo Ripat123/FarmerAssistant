@@ -55,7 +55,9 @@ public class HomeFragment extends Fragment {
         });
         viewModel.weatherData();
         CarouselLayoutManager carouselLayoutManager = new CarouselLayoutManager();
-        carouselLayoutManager.setCarouselStrategy(new MultiBrowseCarouselStrategy());
+        MultiBrowseCarouselStrategy multiBrowseCarouselStrategy = new MultiBrowseCarouselStrategy();
+        multiBrowseCarouselStrategy.setSmallItemSizeMax(180);
+        carouselLayoutManager.setCarouselStrategy(multiBrowseCarouselStrategy);
         binding.carouselRec.setLayoutManager(carouselLayoutManager);
         viewModel.getDiseases().observe(getViewLifecycleOwner(),diseasesModels -> {
             adapter = new DiseasesAdapter(getContext(),diseasesModels);
