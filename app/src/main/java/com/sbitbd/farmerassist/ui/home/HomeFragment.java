@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.carousel.CarouselLayoutManager;
@@ -18,6 +19,7 @@ import com.google.android.material.carousel.FullScreenCarouselStrategy;
 import com.google.android.material.carousel.HeroCarouselStrategy;
 import com.google.android.material.carousel.MultiBrowseCarouselStrategy;
 import com.google.android.material.carousel.UncontainedCarouselStrategy;
+import com.sbitbd.farmerassist.Adapter.AgroAdapter;
 import com.sbitbd.farmerassist.Adapter.DiseasesAdapter;
 import com.sbitbd.farmerassist.DataModel.WeatherModel;
 import com.sbitbd.farmerassist.databinding.FragmentHomeBinding;
@@ -31,6 +33,7 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
     private HomeViewModel viewModel;
     private DiseasesAdapter adapter;
+    private AgroAdapter agroAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -63,7 +66,12 @@ public class HomeFragment extends Fragment {
             adapter = new DiseasesAdapter(getContext(),diseasesModels);
             binding.carouselRec.setAdapter(adapter);
         });
-
+        GridLayoutManager manager = new GridLayoutManager(getContext(), 3);
+        binding.agroRec.setLayoutManager(manager);
+        viewModel.getAgro().observe(getViewLifecycleOwner(),diseasesModels -> {
+            agroAdapter = new AgroAdapter(getContext(),diseasesModels);
+            binding.agroRec.setAdapter(agroAdapter);
+        });
     }
 
     private void setView(WeatherModel model){
