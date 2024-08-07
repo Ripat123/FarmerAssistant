@@ -6,4 +6,5 @@
     <string name="welcome">Welcome to\nFarmer Assistant</string>
     <string name="com_diseases">Common Diseases</string>
     <string name="agro_type">Agro Types</string>
+    <string name="ques">Sample Question</string>
 </resources>

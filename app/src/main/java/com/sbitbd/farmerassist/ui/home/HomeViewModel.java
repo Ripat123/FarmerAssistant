@@ -54,17 +54,17 @@ public class HomeViewModel extends ViewModel {
         models.add(new DiseasesModel("2","https://www.irri.org/sites/default/files/files/diseases%20and%20pests/disease-and-pest-rice-blast.jpg",""));
         models.add(new DiseasesModel("3","https://us-central1-plantix-8e0ce.cloudfunctions.net/v1/image/w400/6f2d41b6-f518-4e63-b863-87209602a207",""));
         models.add(new DiseasesModel("4","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0npoPQLiWW61lvN0cVYadBypWVbj_geJ6IdNVSj_U4O_PF814CrlQWSWEgp5l9MvZxqE&usqp=CAU",""));
-        models.add(new DiseasesModel("5","https://lh3.googleusercontent.com/proxy/CLiYG96HjkXYhHAFofxbvlLe1F0b8_eBcnG0TF7030N-SI3pP8kFZf0IbxpUfUhMN-8apOn4mA4gojZRugY0A-z9rrRybKEB7IuFZjklAoYeF33L-iQN2N4",""));
+        models.add(new DiseasesModel("5","https://plantlet.org/wp-content/uploads/2023/02/fungal-smut-crop-disese.jpg",""));
         diseases_data.setValue(models);
         return diseases_data;
     }
     protected LiveData<ArrayList<DiseasesModel>> getAgro(){
         ArrayList<DiseasesModel> models = new ArrayList<>();
-        models.add(new DiseasesModel("1","https://www.irri.org/sites/default/files/files/diseases%20and%20pests/disease-and-pest-bacterial-blight2.jpg","Rice"));
-        models.add(new DiseasesModel("2","https://www.irri.org/sites/default/files/files/diseases%20and%20pests/disease-and-pest-rice-blast.jpg",""));
-        models.add(new DiseasesModel("3","https://us-central1-plantix-8e0ce.cloudfunctions.net/v1/image/w400/6f2d41b6-f518-4e63-b863-87209602a207",""));
-        models.add(new DiseasesModel("4","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0npoPQLiWW61lvN0cVYadBypWVbj_geJ6IdNVSj_U4O_PF814CrlQWSWEgp5l9MvZxqE&usqp=CAU",""));
-        models.add(new DiseasesModel("5","https://lh3.googleusercontent.com/proxy/CLiYG96HjkXYhHAFofxbvlLe1F0b8_eBcnG0TF7030N-SI3pP8kFZf0IbxpUfUhMN-8apOn4mA4gojZRugY0A-z9rrRybKEB7IuFZjklAoYeF33L-iQN2N4",""));
+        models.add(new DiseasesModel("1","https://png.pngtree.com/png-vector/20220611/ourmid/pngtree-wheat-rice-icon-barley-vector-png-image_4991947.png","Rice"));
+        models.add(new DiseasesModel("2","https://png.pngtree.com/png-vector/20220611/ourmid/pngtree-wheat-rice-icon-barley-vector-png-image_4991947.png",""));
+        models.add(new DiseasesModel("3","https://png.pngtree.com/png-vector/20220611/ourmid/pngtree-wheat-rice-icon-barley-vector-png-image_4991947.png",""));
+        models.add(new DiseasesModel("4","https://png.pngtree.com/png-vector/20220611/ourmid/pngtree-wheat-rice-icon-barley-vector-png-image_4991947.png",""));
+        models.add(new DiseasesModel("5","https://png.pngtree.com/png-vector/20220611/ourmid/pngtree-wheat-rice-icon-barley-vector-png-image_4991947.png",""));
         agro_data.setValue(models);
         return agro_data;
     }
