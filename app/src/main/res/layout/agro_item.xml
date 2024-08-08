@@ -13,7 +13,9 @@
         android:layout_marginTop="3dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="3dp"
+        android:focusable="true"
         app:cardCornerRadius="12dp"
+        android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,20 +37,30 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divider1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/agro_img" />
+
             <TextView
                 android:id="@+id/agroItem_t"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="6dp"
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/nunito"
-                android:text="Rice"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/agro_img"
                 app:layout_constraintStart_toStartOf="@+id/agro_img"
-                app:layout_constraintTop_toBottomOf="@+id/agro_img" />
+                app:layout_constraintTop_toBottomOf="@+id/divider1" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 

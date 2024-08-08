@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.carousel.CarouselLayoutManager;
@@ -21,6 +22,7 @@ import com.google.android.material.carousel.MultiBrowseCarouselStrategy;
 import com.google.android.material.carousel.UncontainedCarouselStrategy;
 import com.sbitbd.farmerassist.Adapter.AgroAdapter;
 import com.sbitbd.farmerassist.Adapter.DiseasesAdapter;
+import com.sbitbd.farmerassist.Adapter.QuestionAdapter;
 import com.sbitbd.farmerassist.DataModel.WeatherModel;
 import com.sbitbd.farmerassist.databinding.FragmentHomeBinding;
 import com.sbitbd.farmerassist.utils.Utils;
@@ -34,6 +36,7 @@ public class HomeFragment extends Fragment {
     private HomeViewModel viewModel;
     private DiseasesAdapter adapter;
     private AgroAdapter agroAdapter;
+    private QuestionAdapter questionAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -71,6 +74,12 @@ public class HomeFragment extends Fragment {
         viewModel.getAgro().observe(getViewLifecycleOwner(),diseasesModels -> {
             agroAdapter = new AgroAdapter(getContext(),diseasesModels);
             binding.agroRec.setAdapter(agroAdapter);
+        });
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        binding.quesRec.setLayoutManager(linearLayoutManager);
+        viewModel.getQuestion().observe(getViewLifecycleOwner(),questionModels -> {
+            questionAdapter= new QuestionAdapter(getContext(),questionModels);
+            binding.quesRec.setAdapter(questionAdapter);
         });
     }
 

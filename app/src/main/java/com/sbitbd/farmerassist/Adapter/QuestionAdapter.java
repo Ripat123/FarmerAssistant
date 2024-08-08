@@ -4,56 +4,55 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.sbitbd.farmerassist.DataModel.DiseasesModel;
+import com.google.android.material.card.MaterialCardView;
+import com.sbitbd.farmerassist.DataModel.QuestionModel;
 import com.sbitbd.farmerassist.R;
 
 import java.util.ArrayList;
 
-public class AgroAdapter extends RecyclerView.Adapter<AgroAdapter.ViewHolder>{
+public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHolder>{
     Context context;
-    ArrayList<DiseasesModel> agroList;
+    ArrayList<QuestionModel> quesList;
 
-    public AgroAdapter(Context context, ArrayList<DiseasesModel> agroList) {
+    public QuestionAdapter(Context context, ArrayList<QuestionModel> quesList) {
         this.context = context;
-        this.agroList = agroList;
+        this.quesList = quesList;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.agro_item, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.question_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        DiseasesModel diseasesModel = agroList.get(position);
-        holder.bind(diseasesModel);
+        QuestionModel questionModel = quesList.get(position);
+        holder.bind(questionModel);
     }
 
     @Override
     public int getItemCount() {
-        return agroList.size();
+        return quesList.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageView;
         TextView name;
+        MaterialCardView cardView;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.agro_img);
-            name = itemView.findViewById(R.id.agroItem_t);
+            name = itemView.findViewById(R.id.question_t);
+            cardView = itemView.findViewById(R.id.question_card);
         }
-        public void bind(DiseasesModel model){
-            name.setText(model.getName());
-            Glide.with(context).load(model.getUrl()).into(imageView);
+
+        public void bind(QuestionModel questionModel){
+            name.setText(questionModel.getTitle());
         }
     }
 }

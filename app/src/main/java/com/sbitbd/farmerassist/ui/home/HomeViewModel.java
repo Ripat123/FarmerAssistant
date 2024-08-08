@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.sbitbd.farmerassist.DataModel.DiseasesModel;
+import com.sbitbd.farmerassist.DataModel.QuestionModel;
 import com.sbitbd.farmerassist.DataModel.WeatherModel;
 import com.sbitbd.farmerassist.Repository.WeatherRepository;
 
@@ -23,6 +24,7 @@ public class HomeViewModel extends ViewModel {
     private MutableLiveData<WeatherModel> live_data = new MutableLiveData<>();
     private MutableLiveData<ArrayList<DiseasesModel>> diseases_data = new MutableLiveData<>();
     private MutableLiveData<ArrayList<DiseasesModel>> agro_data = new MutableLiveData<>();
+    private MutableLiveData<ArrayList<QuestionModel>> ques_data = new MutableLiveData<>();
     @Inject
     public HomeViewModel(WeatherRepository weatherRepository) {
         this.weatherRepository = weatherRepository;
@@ -60,7 +62,7 @@ public class HomeViewModel extends ViewModel {
     }
     protected LiveData<ArrayList<DiseasesModel>> getAgro(){
         ArrayList<DiseasesModel> models = new ArrayList<>();
-        models.add(new DiseasesModel("1","https://png.pngtree.com/png-vector/20220611/ourmid/pngtree-wheat-rice-icon-barley-vector-png-image_4991947.png","Rice"));
+        models.add(new DiseasesModel("1","https://freepngimg.com/download/rice/35823-3-rice-picture.png","Rice"));
         models.add(new DiseasesModel("2","https://png.pngtree.com/png-vector/20220611/ourmid/pngtree-wheat-rice-icon-barley-vector-png-image_4991947.png",""));
         models.add(new DiseasesModel("3","https://png.pngtree.com/png-vector/20220611/ourmid/pngtree-wheat-rice-icon-barley-vector-png-image_4991947.png",""));
         models.add(new DiseasesModel("4","https://png.pngtree.com/png-vector/20220611/ourmid/pngtree-wheat-rice-icon-barley-vector-png-image_4991947.png",""));
@@ -69,4 +71,13 @@ public class HomeViewModel extends ViewModel {
         return agro_data;
     }
 
+    protected LiveData<ArrayList<QuestionModel>> getQuestion(){
+        ArrayList<QuestionModel> models = new ArrayList<>();
+        models.add(new QuestionModel("1","How to crop rice?","1"));
+        models.add(new QuestionModel("2","How to recover diseases to crop rice?","1"));
+        models.add(new QuestionModel("3","How to crop Ginger?","2"));
+
+        ques_data.setValue(models);
+        return ques_data;
+    }
 }

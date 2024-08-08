@@ -41,7 +41,7 @@
                 android:id="@+id/text_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/nunito_bold"
+                android:fontFamily="@font/nunito_black"
                 android:text="@string/welcome"
                 android:textSize="21sp"
                 app:layout_constraintEnd_toStartOf="@+id/temp_t"
@@ -70,7 +70,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/nunito_bold"
+                android:fontFamily="@font/nunito_black"
                 android:text="@string/com_diseases"
                 app:layout_constraintStart_toStartOf="@+id/text_home"
                 app:layout_constraintTop_toBottomOf="@+id/text_home" />
@@ -88,7 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/nunito_bold"
+                android:fontFamily="@font/nunito_black"
                 android:text="@string/agro_type"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/carousel_rec" />
@@ -105,7 +105,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/nunito_bold"
+                android:fontFamily="@font/nunito_black"
                 android:text="@string/ques"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toBottomOf="@+id/agro_rec" />
