@@ -13,13 +13,13 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.sbitbd.farmerassist.ui.dashboard.DashboardFragment"
+        android:name="com.sbitbd.farmerassist.ui.question.DashboardFragment"
         android:label="@string/title_question"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.sbitbd.farmerassist.ui.notifications.NotificationsFragment"
+        android:name="com.sbitbd.farmerassist.ui.recognition.NotificationsFragment"
         android:label="@string/title_img_search"
         tools:layout="@layout/fragment_notifications" />
 </navigation>

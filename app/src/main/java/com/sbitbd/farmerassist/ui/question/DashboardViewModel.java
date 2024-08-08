@@ -1,4 +1,4 @@
-package com.sbitbd.farmerassist.ui.dashboard;
+package com.sbitbd.farmerassist.ui.question;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

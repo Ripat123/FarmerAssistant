@@ -7,4 +7,7 @@
     <string name="com_diseases">Common Diseases</string>
     <string name="agro_type">Agro Types</string>
     <string name="ques">Sample Question</string>
+    <string name="ask">Ask a Question</string>
+    <string name="ask_any">Ask Anything</string>
+    <string name="suggestion_based_on_weather">Suggestion Based on Weather</string>
 </resources>

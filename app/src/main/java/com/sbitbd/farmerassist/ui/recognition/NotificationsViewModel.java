@@ -1,4 +1,4 @@
-package com.sbitbd.farmerassist.ui.notifications;
+package com.sbitbd.farmerassist.ui.recognition;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
