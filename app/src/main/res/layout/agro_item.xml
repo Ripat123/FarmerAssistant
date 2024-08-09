@@ -16,6 +16,7 @@
         android:focusable="true"
         app:cardCornerRadius="12dp"
         android:clickable="true"
+        app:strokeColor="@color/green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
