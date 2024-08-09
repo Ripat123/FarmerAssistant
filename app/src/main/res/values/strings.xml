@@ -10,4 +10,5 @@
     <string name="ask">Ask a Question</string>
     <string name="ask_any">Ask Anything</string>
     <string name="suggestion_based_on_weather">Suggestion Based on Weather</string>
+    <string name="ask_img">Ask from Image</string>
 </resources>
