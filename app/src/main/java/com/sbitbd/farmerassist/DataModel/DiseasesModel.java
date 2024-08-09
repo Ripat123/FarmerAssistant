@@ -1,6 +1,8 @@
 package com.sbitbd.farmerassist.DataModel;
 
-public class DiseasesModel {
+import java.io.Serializable;
+
+public class DiseasesModel implements Serializable {
     String id, url,name;
 
     public DiseasesModel(String id, String url, String name) {
