@@ -77,6 +77,16 @@
                     android:src="@drawable/light_rounded_imagesmode_24" />
             </com.google.android.material.card.MaterialCardView>
 
+            <TextView
+                android:id="@+id/agro_t"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito_black"
+                android:text="@string/ques"
+                app:layout_constraintStart_toStartOf="@+id/ans_card"
+                app:layout_constraintTop_toBottomOf="@+id/ans_card" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/agro_rec"
                 android:layout_width="0dp"
@@ -86,7 +96,7 @@
                 android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/img_src_card" />
+                app:layout_constraintTop_toBottomOf="@+id/agro_t" />
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/ans_card"
@@ -96,10 +106,9 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:minHeight="190dp"
+                android:minHeight="160dp"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="1dp"
-                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/img_src_card">
@@ -129,6 +138,7 @@
                             android:layout_marginBottom="16dp"
                             android:fontFamily="@font/nunito_bold"
                             android:textSize="15sp"
+                            android:text="@string/suggestion"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
