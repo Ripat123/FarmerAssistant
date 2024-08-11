@@ -15,6 +15,7 @@ import com.google.android.material.carousel.MaskableFrameLayout;
 import com.sbitbd.farmerassist.DataModel.DiseasesModel;
 import com.sbitbd.farmerassist.R;
 import com.sbitbd.farmerassist.ui.diseases.disease;
+import com.sbitbd.farmerassist.utils.Utils;
 
 import java.util.ArrayList;
 
@@ -57,7 +58,7 @@ public class DiseasesAdapter extends RecyclerView.Adapter<DiseasesAdapter.ViewHo
             Glide.with(context).load(model.getUrl()).into(imageView);
             mask.setOnClickListener(v -> {
                 Intent intent = new Intent(context, disease.class);
-                intent.putExtra("data",model);
+                intent.putExtra(Utils.DATA,model);
                 context.startActivity(intent);
             });
         }

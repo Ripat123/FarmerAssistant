@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.card.MaterialCardView;
+import com.sbitbd.farmerassist.DataModel.AgroModel;
 import com.sbitbd.farmerassist.DataModel.DiseasesModel;
 import com.sbitbd.farmerassist.R;
 import com.sbitbd.farmerassist.ui.agro.agro;
@@ -22,9 +23,9 @@ import java.util.ArrayList;
 
 public class AgroAdapter extends RecyclerView.Adapter<AgroAdapter.ViewHolder>{
     Context context;
-    ArrayList<DiseasesModel> agroList;
+    ArrayList<AgroModel> agroList;
 
-    public AgroAdapter(Context context, ArrayList<DiseasesModel> agroList) {
+    public AgroAdapter(Context context, ArrayList<AgroModel> agroList) {
         this.context = context;
         this.agroList = agroList;
     }
@@ -38,8 +39,8 @@ public class AgroAdapter extends RecyclerView.Adapter<AgroAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        DiseasesModel diseasesModel = agroList.get(position);
-        holder.bind(diseasesModel);
+        AgroModel model = agroList.get(position);
+        holder.bind(model);
     }
 
     @Override
@@ -57,7 +58,7 @@ public class AgroAdapter extends RecyclerView.Adapter<AgroAdapter.ViewHolder>{
             name = itemView.findViewById(R.id.agroItem_t);
             cardView = itemView.findViewById(R.id.agro_card);
         }
-        public void bind(DiseasesModel model){
+        public void bind(AgroModel model){
             name.setText(model.getName());
             Glide.with(context).load(model.getUrl()).into(imageView);
             cardView.setOnClickListener(v -> {

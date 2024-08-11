@@ -1,12 +1,12 @@
 package com.sbitbd.farmerassist.DataModel;
 
 public class QuestionModel {
-    String id,title,type;
+    String id,title,agro_id;
 
-    public QuestionModel(String id, String title, String type) {
+    public QuestionModel(String id, String title, String agro_id) {
         this.id = id;
         this.title = title;
-        this.type = type;
+        this.agro_id = agro_id;
     }
 
     public String getId() {
@@ -17,7 +17,7 @@ public class QuestionModel {
         return title;
     }
 
-    public String getType() {
-        return type;
+    public String getAgro_id() {
+        return agro_id;
     }
 }

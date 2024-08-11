@@ -2,18 +2,13 @@ package com.sbitbd.farmerassist.DataModel;
 
 import java.io.Serializable;
 
-public class DiseasesModel implements Serializable {
-    String id, url,name,agro_id;
+public class AgroModel implements Serializable {
+    String id, url,name;
 
-    public DiseasesModel(String id, String url, String name, String agro_id) {
+    public AgroModel(String id, String url, String name) {
         this.id = id;
         this.url = url;
         this.name = name;
-        this.agro_id = agro_id;
-    }
-
-    public String getAgro_id() {
-        return agro_id;
     }
 
     public String getId() {

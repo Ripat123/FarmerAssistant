@@ -38,16 +38,22 @@ public class DashboardFragment extends Fragment {
 
     private void initView() {
         binding.quesBtn.setOnClickListener(v -> {
-            binding.loader.setVisibility(View.VISIBLE);
-            if (!binding.questId.getText().toString().isEmpty())
-                dashboardViewModel.generateText(binding.questId.getText().toString()).observe(getViewLifecycleOwner(),s -> {
+            if (!binding.questId.getText().toString().isEmpty()){
+                binding.quesBtn.setEnabled(false);
+                binding.ansT.setText("");
+                binding.loader.setVisibility(View.VISIBLE);
+                dashboardViewModel.GenerateText(binding.questId.getText().toString()).observe(getViewLifecycleOwner(),s -> {
                     binding.ansT.setText(s);
                     binding.loader.setVisibility(View.GONE);
                     binding.questId.setText("");
+                    binding.quesBtn.setEnabled(true);
                 });
+            }
+
             else binding.questId.setError("Write something.");
         });
-
+        binding.questionCard.setOnClickListener(v -> binding.questId.setText(binding.questionT.getText().toString()));
+        binding.questionCard1.setOnClickListener(v -> binding.questId.setText(binding.questionT1.getText().toString()));
     }
 
     @Override

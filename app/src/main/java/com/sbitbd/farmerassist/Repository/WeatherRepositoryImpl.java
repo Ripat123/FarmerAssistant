@@ -1,6 +1,5 @@
 package com.sbitbd.farmerassist.Repository;
 
-import android.util.Log;
 
 import com.sbitbd.farmerassist.BuildConfig;
 import com.sbitbd.farmerassist.DataModel.WeatherModel;

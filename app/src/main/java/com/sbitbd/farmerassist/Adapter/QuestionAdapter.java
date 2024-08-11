@@ -1,6 +1,7 @@
 package com.sbitbd.farmerassist.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.card.MaterialCardView;
 import com.sbitbd.farmerassist.DataModel.QuestionModel;
 import com.sbitbd.farmerassist.R;
+import com.sbitbd.farmerassist.ui.diseases.disease;
+import com.sbitbd.farmerassist.utils.Utils;
 
 import java.util.ArrayList;
 
@@ -53,6 +56,11 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
 
         public void bind(QuestionModel questionModel){
             name.setText(questionModel.getTitle());
+            cardView.setOnClickListener(v -> {
+                Intent intent = new Intent(context, disease.class);
+                intent.putExtra(Utils.QUESTION,questionModel.getTitle());
+                context.startActivity(intent);
+            });
         }
     }
 }
