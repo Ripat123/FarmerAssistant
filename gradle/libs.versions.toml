@@ -1,5 +1,5 @@
 [versions]
-agp = "8.5.1"
+agp = "8.5.2"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
@@ -15,7 +15,7 @@ googleAndroidLibrariesMapsplatformSecretsGradlePlugin = "2.0.1"
 hilt_version = "2.51.1"
 retrofit = "2.11.0"
 glide = "5.0.0-rc01"
-activity = "1.9.0"
+activity = "1.9.1"
 guava = "33.2.1-jre"
 reactiveStreams = "1.0.4"
 

@@ -19,12 +19,10 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class DashboardFragment extends Fragment {
 
     private FragmentDashboardBinding binding;
+    DashboardViewModel dashboardViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        DashboardViewModel dashboardViewModel =
-                new ViewModelProvider(this).get(DashboardViewModel.class);
-
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
 
         return binding.getRoot();
@@ -33,10 +31,22 @@ public class DashboardFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        dashboardViewModel =
+                new ViewModelProvider(this).get(DashboardViewModel.class);
         initView();
     }
 
-    private void initView(){
+    private void initView() {
+        binding.quesBtn.setOnClickListener(v -> {
+            binding.loader.setVisibility(View.VISIBLE);
+            if (!binding.questId.getText().toString().isEmpty())
+                dashboardViewModel.generateText(binding.questId.getText().toString()).observe(getViewLifecycleOwner(),s -> {
+                    binding.ansT.setText(s);
+                    binding.loader.setVisibility(View.GONE);
+                    binding.questId.setText("");
+                });
+            else binding.questId.setError("Write something.");
+        });
 
     }
 
