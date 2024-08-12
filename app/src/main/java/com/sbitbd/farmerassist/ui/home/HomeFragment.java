@@ -12,6 +12,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -50,6 +51,7 @@ public class HomeFragment extends Fragment {
     private ActivityResultLauncher<String> requestPermissionLauncher;
     private double latitude;
     private double longitude;
+    private AlertDialog dialog;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -83,14 +85,21 @@ public class HomeFragment extends Fragment {
         });
         GridLayoutManager manager = new GridLayoutManager(getContext(), 3);
         binding.agroRec.setLayoutManager(manager);
+
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(getContext());
+        builder.setView(R.layout.progress_dialog);
+        builder.setCancelable(false);
+        dialog = builder.create();
+        dialog.show();
         viewModel.getAgro().observe(getViewLifecycleOwner(),diseasesModels -> {
             agroAdapter = new AgroAdapter(getContext(),diseasesModels);
             binding.agroRec.setAdapter(agroAdapter);
+            if (dialog.isShowing())dialog.cancel();
         });
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         binding.quesRec.setLayoutManager(linearLayoutManager);
         viewModel.getQuestion().observe(getViewLifecycleOwner(),questionModels -> {
-            questionAdapter= new QuestionAdapter(getContext(),questionModels);
+            questionAdapter= new QuestionAdapter(1,getContext(),questionModels);
             binding.quesRec.setAdapter(questionAdapter);
         });
         permissionLauncher();

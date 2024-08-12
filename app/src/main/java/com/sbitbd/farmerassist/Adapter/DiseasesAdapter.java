@@ -49,10 +49,12 @@ public class DiseasesAdapter extends RecyclerView.Adapter<DiseasesAdapter.ViewHo
     class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
         MaskableFrameLayout mask;
+        Context context1;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.diseases_image);
             mask = itemView.findViewById(R.id.mask);
+            context1 = itemView.getContext();
         }
         public void bind(DiseasesModel model){
             Glide.with(context).load(model.getUrl()).into(imageView);

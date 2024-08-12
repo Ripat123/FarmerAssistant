@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.sbitbd.farmerassist.DataModel.QuestionModel;
+import com.sbitbd.farmerassist.Repository.FirestoreRepository;
 import com.sbitbd.farmerassist.Repository.GeminiRepository;
 
 import java.util.ArrayList;
@@ -19,11 +20,13 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 public class diseaseViewModel extends ViewModel {
     private MutableLiveData<String> ans_data = new MutableLiveData<>();
     private final GeminiRepository geminiRepository;
+    private final FirestoreRepository firestoreRepository;
     private MutableLiveData<ArrayList<QuestionModel>> ques_data = new MutableLiveData<>();
 
     @Inject
-    public diseaseViewModel(GeminiRepository geminiRepository) {
+    public diseaseViewModel(GeminiRepository geminiRepository,FirestoreRepository firestoreRepository) {
         this.geminiRepository = geminiRepository;
+        this.firestoreRepository = firestoreRepository;
     }
 
     protected LiveData<String> GenerateText(String prompt) {
@@ -56,13 +59,17 @@ public class diseaseViewModel extends ViewModel {
         return ans_data;
     }
 
-    protected LiveData<ArrayList<QuestionModel>> getQuestion(){
-        ArrayList<QuestionModel> models = new ArrayList<>();
-        models.add(new QuestionModel("1","How to crop rice?","1"));
-        models.add(new QuestionModel("2","How to recover diseases to crop rice?","1"));
-        models.add(new QuestionModel("3","How to crop Ginger?","2"));
+    protected LiveData<ArrayList<QuestionModel>> getQuestion(String id){
+        firestoreRepository.fetchLMINQuestionData(id, 10, new FirestoreRepository.QuestionDataCallback() {
+            @Override
+            public void onSuccess(ArrayList<QuestionModel> data) {
+                ques_data.setValue(data);
+            }
 
-        ques_data.setValue(models);
+            @Override
+            public void onError(String error) {
+            }
+        });
         return ques_data;
     }
 }

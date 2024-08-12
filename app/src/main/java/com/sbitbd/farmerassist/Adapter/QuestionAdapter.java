@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.card.MaterialCardView;
 import com.sbitbd.farmerassist.DataModel.QuestionModel;
 import com.sbitbd.farmerassist.R;
+import com.sbitbd.farmerassist.Repository.OnItemClickListener;
 import com.sbitbd.farmerassist.ui.diseases.disease;
 import com.sbitbd.farmerassist.utils.Utils;
 
@@ -21,10 +22,17 @@ import java.util.ArrayList;
 public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHolder>{
     Context context;
     ArrayList<QuestionModel> quesList;
+    private OnItemClickListener listener;
+    int status;
 
-    public QuestionAdapter(Context context, ArrayList<QuestionModel> quesList) {
+    public QuestionAdapter(int status,Context context, ArrayList<QuestionModel> quesList) {
         this.context = context;
         this.quesList = quesList;
+        this.status = status;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 
     @NonNull
@@ -37,7 +45,7 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         QuestionModel questionModel = quesList.get(position);
-        holder.bind(questionModel);
+        holder.bind(questionModel,position);
     }
 
     @Override
@@ -54,12 +62,18 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.ViewHo
             cardView = itemView.findViewById(R.id.question_card);
         }
 
-        public void bind(QuestionModel questionModel){
+        public void bind(QuestionModel questionModel, int position){
             name.setText(questionModel.getTitle());
             cardView.setOnClickListener(v -> {
-                Intent intent = new Intent(context, disease.class);
-                intent.putExtra(Utils.QUESTION,questionModel.getTitle());
-                context.startActivity(intent);
+                if (status == 1){
+                    Intent intent = new Intent(context, disease.class);
+                    intent.putExtra(Utils.QUESTION,questionModel);
+                    context.startActivity(intent);
+                }else if (status == 2) {
+                    if (listener != null)
+                        listener.onItemClick(position);
+                }
+
             });
         }
     }

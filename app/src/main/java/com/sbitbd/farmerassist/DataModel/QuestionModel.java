@@ -1,6 +1,8 @@
 package com.sbitbd.farmerassist.DataModel;
 
-public class QuestionModel {
+import java.io.Serializable;
+
+public class QuestionModel implements Serializable {
     String id,title,agro_id;
 
     public QuestionModel(String id, String title, String agro_id) {

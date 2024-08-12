@@ -14,11 +14,14 @@ import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.sbitbd.farmerassist.BuildConfig;
+import com.sbitbd.farmerassist.DataModel.QuestionModel;
 import com.sbitbd.farmerassist.DataModel.WeatherModel;
+import com.sbitbd.farmerassist.Repository.FirestoreRepository;
 import com.sbitbd.farmerassist.Repository.GeminiRepository;
 import com.sbitbd.farmerassist.Repository.WeatherRepository;
 import com.sbitbd.farmerassist.utils.Utils;
 
+import java.util.ArrayList;
 import java.util.concurrent.Executors;
 
 import javax.inject.Inject;
@@ -28,13 +31,17 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 @HiltViewModel
 public class DashboardViewModel extends ViewModel {
     private final WeatherRepository weatherRepository;
+    private final FirestoreRepository firestoreRepository;
     private MutableLiveData<WeatherModel> live_data = new MutableLiveData<>();
     private MutableLiveData<String> ans_data = new MutableLiveData<>();
     private final GeminiRepository geminiRepository;
+    private MutableLiveData<ArrayList<QuestionModel>> ques_data = new MutableLiveData<>();
     @Inject
-    public DashboardViewModel(GeminiRepository geminiRepository,WeatherRepository weatherRepository) {
+    public DashboardViewModel(GeminiRepository geminiRepository,WeatherRepository weatherRepository,
+                              FirestoreRepository firestoreRepository) {
         this.geminiRepository = geminiRepository;
         this.weatherRepository = weatherRepository;
+        this.firestoreRepository = firestoreRepository;
     }
 
     protected LiveData<String> GenerateText(String prompt) {
@@ -70,5 +77,19 @@ public class DashboardViewModel extends ViewModel {
                 live_data.setValue(null);
             }
         });
+    }
+
+    protected LiveData<ArrayList<QuestionModel>> getQuestion(){
+        firestoreRepository.fetchINQuestionData(2, new FirestoreRepository.QuestionDataCallback() {
+            @Override
+            public void onSuccess(ArrayList<QuestionModel> data) {
+                ques_data.setValue(data);
+            }
+
+            @Override
+            public void onError(String error) {
+            }
+        });
+        return ques_data;
     }
 }

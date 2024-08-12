@@ -84,6 +84,13 @@ public class DashboardFragment extends Fragment {
             else
                 Toast.makeText(getContext(), "Not Found", Toast.LENGTH_SHORT).show();
         });
+        dashboardViewModel.getQuestion().observe(getViewLifecycleOwner(),questionModels -> {
+            if (questionModels != null){
+                binding.questionT.setText(questionModels.get(0).getTitle());
+                binding.questionT1.setText(questionModels.get(1).getTitle());
+            }
+
+        });
 
         permissionLauncher();
     }
