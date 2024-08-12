@@ -3,6 +3,8 @@ package com.sbitbd.farmerassist.ui.diseases;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -19,6 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.google.android.material.snackbar.Snackbar;
 import com.sbitbd.farmerassist.Adapter.QuestionAdapter;
 import com.sbitbd.farmerassist.DataModel.DiseasesModel;
 import com.sbitbd.farmerassist.DataModel.QuestionModel;
@@ -28,6 +31,7 @@ import com.sbitbd.farmerassist.databinding.ActivityDiseaseBinding;
 import com.sbitbd.farmerassist.utils.Utils;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -38,6 +42,7 @@ public class disease extends AppCompatActivity implements OnItemClickListener {
     private QuestionAdapter questionAdapter;
     private Bitmap bitmap;
     private ArrayList<QuestionModel> questionModels;
+    private TextToSpeech textToSpeech;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +80,10 @@ public class disease extends AppCompatActivity implements OnItemClickListener {
                 getOnBackPressedDispatcher().onBackPressed();
                 finish();
             });
+            binding.readBtn.setOnClickListener(v -> {
+                if (!binding.ansT.getText().toString().equals(""))
+                    textToSpeech.speak(binding.ansT.getText().toString(), TextToSpeech.QUEUE_FLUSH, null, null);
+            });
             if (qust != null) {
                 binding.questId.setText(qust.getTitle());
                 RenderQuestion(qust.getAgro_id());
@@ -94,6 +103,7 @@ public class disease extends AppCompatActivity implements OnItemClickListener {
 
                         });
             }
+            VoiceInit();
         } catch (Exception e) {
         }
     }
@@ -116,8 +126,25 @@ public class disease extends AppCompatActivity implements OnItemClickListener {
         });
     }
 
+    private void VoiceInit() {
+        textToSpeech = new TextToSpeech(this, status -> {
+            if (status == TextToSpeech.SUCCESS) {
+                int result = textToSpeech.setLanguage(Locale.ENGLISH);
+                if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                    Snackbar.make(binding.getRoot(), "Language not supported", Snackbar.LENGTH_SHORT).show();
+                }
+            } else {
+                Log.e("TTS", "Initialization failed");
+            }
+        });
+    }
+
     @Override
     protected void onDestroy() {
+        if (textToSpeech != null) {
+            textToSpeech.stop();
+            textToSpeech.shutdown();
+        }
         super.onDestroy();
         binding = null;
     }

@@ -9,6 +9,8 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +33,7 @@ import com.sbitbd.farmerassist.databinding.FragmentNotificationsBinding;
 import com.sbitbd.farmerassist.utils.Utils;
 
 import java.io.IOException;
+import java.util.Locale;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -43,6 +46,7 @@ public class NotificationsFragment extends Fragment {
     private Bitmap selectedImageBitmap;
     private ActivityResultLauncher<Intent> cameraActivityResultLauncher;
     private ActivityResultLauncher<String> requestPermissionLauncher;
+    private TextToSpeech textToSpeech;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -76,9 +80,14 @@ public class NotificationsFragment extends Fragment {
                         notificationsViewModel.GenerateText(binding.questId.getText().toString()).observe(getViewLifecycleOwner(), this::setView);
                 } else binding.questId.setError("Write something.");
             });
+            binding.readBtn.setOnClickListener(v -> {
+                if (!binding.ansT.getText().toString().equals(""))
+                    textToSpeech.speak(binding.ansT.getText().toString(), TextToSpeech.QUEUE_FLUSH, null, null);
+            });
             imageLauncher();
             cameraLauncher();
             permissionLauncher();
+            VoiceInit();
         } catch (Exception e) {
         }
     }
@@ -158,10 +167,25 @@ public class NotificationsFragment extends Fragment {
         binding.quesBtn.setEnabled(true);
     }
 
-
+    private void VoiceInit() {
+        textToSpeech = new TextToSpeech(getContext(), status -> {
+            if (status == TextToSpeech.SUCCESS) {
+                int result = textToSpeech.setLanguage(Locale.ENGLISH);
+                if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                    Snackbar.make(binding.getRoot(), "Language not supported", Snackbar.LENGTH_SHORT).show();
+                }
+            } else {
+                Log.e("TTS", "Initialization failed");
+            }
+        });
+    }
 
     @Override
     public void onDestroyView() {
+        if (textToSpeech != null) {
+            textToSpeech.stop();
+            textToSpeech.shutdown();
+        }
         super.onDestroyView();
         binding = null;
     }

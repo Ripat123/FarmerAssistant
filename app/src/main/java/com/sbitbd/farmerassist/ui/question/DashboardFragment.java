@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,7 @@ import com.sbitbd.farmerassist.databinding.FragmentDashboardBinding;
 import com.sbitbd.farmerassist.utils.Utils;
 
 import java.text.MessageFormat;
+import java.util.Locale;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -42,6 +44,7 @@ public class DashboardFragment extends Fragment {
     private double latitude;
     private double longitude;
     private AlertDialog dialog;
+    private TextToSpeech textToSpeech;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -84,14 +87,18 @@ public class DashboardFragment extends Fragment {
             else
                 Toast.makeText(getContext(), "Not Found", Toast.LENGTH_SHORT).show();
         });
-        dashboardViewModel.getQuestion().observe(getViewLifecycleOwner(),questionModels -> {
-            if (questionModels != null){
+        dashboardViewModel.getQuestion().observe(getViewLifecycleOwner(), questionModels -> {
+            if (questionModels != null) {
                 binding.questionT.setText(questionModels.get(0).getTitle());
                 binding.questionT1.setText(questionModels.get(1).getTitle());
             }
 
         });
-
+        binding.readBtn.setOnClickListener(v -> {
+            if (!binding.ansT.getText().toString().equals(""))
+                textToSpeech.speak(binding.ansT.getText().toString(), TextToSpeech.QUEUE_FLUSH, null, null);
+        });
+        VoiceInit();
         permissionLauncher();
     }
 
@@ -142,8 +149,25 @@ public class DashboardFragment extends Fragment {
         }
     }
 
+    private void VoiceInit() {
+        textToSpeech = new TextToSpeech(getContext(), status -> {
+            if (status == TextToSpeech.SUCCESS) {
+                int result = textToSpeech.setLanguage(Locale.ENGLISH);
+                if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                    Snackbar.make(binding.getRoot(), "Language not supported", Snackbar.LENGTH_SHORT).show();
+                }
+            } else {
+                Log.e("TTS", "Initialization failed");
+            }
+        });
+    }
+
     @Override
     public void onDestroyView() {
+        if (textToSpeech != null) {
+            textToSpeech.stop();
+            textToSpeech.shutdown();
+        }
         super.onDestroyView();
         binding = null;
     }
