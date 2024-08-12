@@ -76,7 +76,7 @@ public class DashboardFragment extends Fragment {
         binding.questionCard1.setOnClickListener(v -> binding.questId.setText(binding.questionT1.getText().toString()));
         binding.weatherBtn.setOnClickListener(v -> getLocation());
         dashboardViewModel.getData().observe(getViewLifecycleOwner(), weatherModel -> {
-            if (dialog.isShowing()) dialog.cancel();
+            if (dialog != null && dialog.isShowing()) dialog.cancel();
             if (weatherModel != null)
                 binding.questId.setText(MessageFormat.format("Country: {0} Weather: {1}, {2}, What " +
                                 "should i do in this environment for my agro?", weatherModel.getSys().getCountry(),

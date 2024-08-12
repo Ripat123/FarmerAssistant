@@ -19,6 +19,10 @@ activity = "1.9.1"
 guava = "33.2.1-jre"
 reactiveStreams = "1.0.4"
 playServicesLocation = "21.3.0"
+googleGmsGoogleServices = "4.4.2"
+firebaseFirestore = "25.0.0"
+firebaseBom = "33.1.2"
+firebaseAnalytics = "22.0.2"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -43,10 +47,14 @@ activity = { group = "androidx.activity", name = "activity", version.ref = "acti
 guava = { group = "com.google.guava", name = "guava", version.ref = "guava" }
 reactive-streams = { group = "org.reactivestreams", name = "reactive-streams", version.ref = "reactiveStreams" }
 play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
+firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics", version.ref = "firebaseAnalytics" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt_version" }
 google-android-libraries-mapsplatform-secrets-gradle-plugin = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "googleAndroidLibrariesMapsplatformSecretsGradlePlugin" }
+google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
 
 

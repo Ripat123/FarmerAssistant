@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin)
     alias(libs.plugins.hilt)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 def localPropertiesFile = rootProject.file("local.properties")
@@ -66,6 +67,9 @@ dependencies {
     implementation libs.guava
     implementation libs.reactive.streams
     implementation libs.play.services.location
+    implementation libs.firebase.firestore
+    implementation platform(libs.firebase.bom)
+    implementation libs.firebase.analytics
     annotationProcessor libs.compiler
     annotationProcessor libs.hilt.compiler
 
