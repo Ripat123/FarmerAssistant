@@ -12,6 +12,9 @@ public class DiseasesModel implements Serializable {
         this.agro_id = agro_id;
     }
 
+    public DiseasesModel() {
+    }
+
     public String getAgro_id() {
         return agro_id;
     }

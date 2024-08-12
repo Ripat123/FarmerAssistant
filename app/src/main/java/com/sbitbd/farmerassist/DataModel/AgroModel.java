@@ -11,6 +11,9 @@ public class AgroModel implements Serializable {
         this.name = name;
     }
 
+    public AgroModel() {
+    }
+
     public String getId() {
         return id;
     }

@@ -22,10 +22,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.sbitbd.farmerassist" />
+                  <option name="mobileSdkAppId" value="1:823401116779:android:d1f22c2ffa4881b35fed2e" />
+                  <option name="projectId" value="text-745b0" />
+                  <option name="projectNumber" value="823401116779" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

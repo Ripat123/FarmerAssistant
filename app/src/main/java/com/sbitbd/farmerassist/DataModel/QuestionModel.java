@@ -9,6 +9,9 @@ public class QuestionModel {
         this.agro_id = agro_id;
     }
 
+    public QuestionModel() {
+    }
+
     public String getId() {
         return id;
     }
