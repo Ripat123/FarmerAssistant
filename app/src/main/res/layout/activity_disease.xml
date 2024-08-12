@@ -88,7 +88,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/ans_card" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/agro_rec"
+                android:id="@+id/quest_rec"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"

@@ -19,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class DashboardFragment extends Fragment {
 
     private FragmentDashboardBinding binding;
-    DashboardViewModel dashboardViewModel;
+    private DashboardViewModel dashboardViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

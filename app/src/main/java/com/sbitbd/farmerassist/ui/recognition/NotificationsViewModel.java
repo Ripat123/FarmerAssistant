@@ -49,4 +49,19 @@ public class NotificationsViewModel extends ViewModel {
         });
         return ans_data;
     }
+
+    protected LiveData<String> GenerateText(String prompt) {
+        geminiRepository.generateText(prompt, new GeminiRepository.DataCallback() {
+            @Override
+            public void onSuccess(String data) {
+                ans_data.postValue(data);
+            }
+
+            @Override
+            public void onError(String error) {
+                ans_data.postValue(error);
+            }
+        });
+        return ans_data;
+    }
 }

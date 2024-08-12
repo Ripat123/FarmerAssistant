@@ -7,20 +7,74 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.google.android.material.carousel.CarouselLayoutManager;
+import com.google.android.material.carousel.MultiBrowseCarouselStrategy;
+import com.sbitbd.farmerassist.Adapter.DiseasesAdapter;
+import com.sbitbd.farmerassist.Adapter.QuestionAdapter;
+import com.sbitbd.farmerassist.DataModel.AgroModel;
 import com.sbitbd.farmerassist.R;
+import com.sbitbd.farmerassist.databinding.ActivityAgroBinding;
+import com.sbitbd.farmerassist.utils.Utils;
 
 public class agro extends AppCompatActivity {
+
+    private ActivityAgroBinding binding;
+    private agroViewModel viewModel;
+    private DiseasesAdapter adapter;
+    private QuestionAdapter questionAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_agro);
+        binding = ActivityAgroBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        initiView();
+    }
+
+    private void initiView(){
+        try {
+            viewModel = new ViewModelProvider(this).get(agroViewModel.class);
+            AgroModel model = (AgroModel) getIntent().getSerializableExtra(Utils.DATA);
+            if (model != null)
+                binding.textHome.setText(model.getName());
+
+            CarouselLayoutManager carouselLayoutManager = new CarouselLayoutManager();
+            MultiBrowseCarouselStrategy multiBrowseCarouselStrategy = new MultiBrowseCarouselStrategy();
+            multiBrowseCarouselStrategy.setSmallItemSizeMax(180);
+            carouselLayoutManager.setCarouselStrategy(multiBrowseCarouselStrategy);
+            binding.carouselRec.setLayoutManager(carouselLayoutManager);
+            viewModel.getDiseases().observe(this,diseasesModels -> {
+                adapter = new DiseasesAdapter(this,diseasesModels);
+                binding.carouselRec.setAdapter(adapter);
+            });
+
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+            binding.quesRec.setLayoutManager(linearLayoutManager);
+            viewModel.getQuestion().observe(this,questionModels -> {
+                questionAdapter= new QuestionAdapter(this,questionModels);
+                binding.quesRec.setAdapter(questionAdapter);
+            });
+
+            binding.backBtn.setOnClickListener(v -> {
+                getOnBackPressedDispatcher().onBackPressed();
+                finish();
+            });
+        }catch (Exception e){
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        binding = null;
     }
 }

@@ -18,6 +18,7 @@ import com.sbitbd.farmerassist.DataModel.DiseasesModel;
 import com.sbitbd.farmerassist.R;
 import com.sbitbd.farmerassist.ui.agro.agro;
 import com.sbitbd.farmerassist.ui.diseases.disease;
+import com.sbitbd.farmerassist.utils.Utils;
 
 import java.util.ArrayList;
 
@@ -63,7 +64,7 @@ public class AgroAdapter extends RecyclerView.Adapter<AgroAdapter.ViewHolder>{
             Glide.with(context).load(model.getUrl()).into(imageView);
             cardView.setOnClickListener(v -> {
                 Intent intent = new Intent(context, agro.class);
-                intent.putExtra("data",model);
+                intent.putExtra(Utils.DATA,model);
                 context.startActivity(intent);
             });
         }
