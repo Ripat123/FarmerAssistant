@@ -65,6 +65,7 @@ dependencies {
     implementation libs.activity
     implementation libs.guava
     implementation libs.reactive.streams
+    implementation libs.play.services.location
     annotationProcessor libs.compiler
     annotationProcessor libs.hilt.compiler
 

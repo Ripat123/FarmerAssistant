@@ -10,5 +10,5 @@ public interface WeatherRepository {
         void onError(String error);
     }
 
-    void fetchData(DataCallback callback);
+    void fetchData(double lat, double lon,DataCallback callback);
 }

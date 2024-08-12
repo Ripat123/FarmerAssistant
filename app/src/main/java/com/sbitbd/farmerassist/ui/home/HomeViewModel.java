@@ -35,8 +35,8 @@ public class HomeViewModel extends ViewModel {
         return live_data;
     }
 
-    protected void weatherData(){
-        weatherRepository.fetchData(new WeatherRepository.DataCallback() {
+    protected void weatherData(double lat, double lon){
+        weatherRepository.fetchData(lat,lon,new WeatherRepository.DataCallback() {
             @Override
             public void onSuccess(WeatherModel data) {
                 Log.d("dddd",data.toString());

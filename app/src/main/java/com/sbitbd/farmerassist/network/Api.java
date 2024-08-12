@@ -11,6 +11,5 @@ public interface Api {
     Call<WeatherModel> getForecast(@Query("q") String city, @Query("appid") String appId, @Query("units") String units);
 
     @GET("/data/2.5/weather")
-    Call<WeatherModel> getForecastWithLocation(@Query("units") String units, @Query("lat") double lat,
-                                               @Query("lon") double lon,@Query("exclude") String exclude,@Query("appid") String apiKey);
+    Call<WeatherModel> getForecastWithLocation(@Query("lat") double lat, @Query("lon") double lon,@Query("appid") String apiKey,@Query("units") String units);
 }

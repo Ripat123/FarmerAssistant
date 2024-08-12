@@ -21,8 +21,8 @@ public class WeatherRepositoryImpl implements WeatherRepository {
     }
 
     @Override
-    public void fetchData(DataCallback callback) {
-        api.getForecast("Dhaka", BuildConfig.wapiKey,Utils.METRIC).enqueue(new Callback<>() {
+    public void fetchData(double lat,double lon,DataCallback callback) {
+        api.getForecastWithLocation(lat,lon, BuildConfig.wapiKey,Utils.METRIC).enqueue(new Callback<>() {
             @Override
             public void onResponse(Call<WeatherModel> call, Response<WeatherModel> response) {
                 if (response.isSuccessful()) {

@@ -18,6 +18,7 @@ glide = "5.0.0-rc01"
 activity = "1.9.1"
 guava = "33.2.1-jre"
 reactiveStreams = "1.0.4"
+playServicesLocation = "21.3.0"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -41,6 +42,7 @@ compiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref
 activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 guava = { group = "com.google.guava", name = "guava", version.ref = "guava" }
 reactive-streams = { group = "org.reactivestreams", name = "reactive-streams", version.ref = "reactiveStreams" }
+play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

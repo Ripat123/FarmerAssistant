@@ -7,6 +7,7 @@ import java.util.List;
 public class WeatherModel {
     Coord coord;
     Main main;
+    sys sys;
     List<Weather> weather = new ArrayList<>();
     String name;
 
@@ -24,6 +25,10 @@ public class WeatherModel {
 
     public String getName() {
         return name;
+    }
+
+    public sys getSys() {
+        return sys;
     }
 
     @Override
